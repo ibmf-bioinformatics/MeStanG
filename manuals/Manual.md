@@ -18,6 +18,11 @@
 
 For sample generation, it is required to provide `.fasta` format files and `.tsv` files with specific formats as input to the workflow, `.fasta` files can have many different entries (Multifasta). All entries from each `.fasta` file will have the same design characteristics as they come from the "same source". Different `.fasta` files can have specific design characteristics defined by the user, if specific features are required for an entry, said entry has to be in a separate `.fasta` file. It is necessary to provide at least **one** `.fasta` and **one** `.tsv` files for each run, explained later in [Input files](#ifls).
 
+<p align="center">
+  <img src="MeStanG_workflow.png"/>
+</p>
+MeStanG workflow. Created in BioRender. Ramos Lopez, D. (2025) https://BioRender.com/j47q398
+
 ## <a name="sdes"></a> Sample Design
 
 For design, there are three general specifications.
