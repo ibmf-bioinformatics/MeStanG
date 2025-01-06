@@ -53,12 +53,14 @@ Common to all modes and designs:
 - `--circular`: Set genome structure as circular.
 - `-c`, `--custom`: File with custom basecalling error model.
 - `-em`, `--em_model`: File with custom base emission model.
-- `-o`, `--output`: Output directory (Default = MeStanG_output).
+- `-o`, `--output`: Output directory (Default = MeStanG_output). *
 - `-t`, `--threads`: Number of threads.
 - `--error_profile`: Flag for generating error insertion profile output.
 - `--no_metrics`: Flag to skip generating metrics files.
-- `--no_ids`: Flag to generate sequences without IDs, normally sequence IDs will resemble the original ID entry of the sequence they come from, to generate sequences with generic IDs use this flag.
+- `--no_ids`: Flag to generate sequences without IDs, normally sequence IDs will resemble the original ID entry of the sequence they come from. To generate sequences with generic IDs use this flag.
 - `--unweighted`: Flag to use the same number of reads for every entry in Multifasta files. By default MeStanG will distribute the number of reads of each `.fasta` file among its entries based on their lengths, the longer the read the higher the number of reads distributed to it. While this might make sense mathematically and biologically in some reference genomes like bacterial assemblies where the chromosome makes up to >98% of the genome and the rest is plasmid sequences, it is up to the user to decide whether to use this flag. Using this flag will make MeStanG assign the same `-n` number of reads to each entry.
+
+`*` How MeStanG file management works: While it is possible to provide relative and absolute paths for all the input files, the output will always be in a new folder in the current working directory due to how the pipeline works, it is **not** recommended to provide paths in `-o`.
 
 Specific to certain modes/sample sources:
 
