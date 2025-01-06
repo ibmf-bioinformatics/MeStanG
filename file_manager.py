@@ -277,7 +277,7 @@ def get_abundance_file(name_o, ratios, files, header, total):
 
 
 def display_console(file, stat, profile, basecaller, circular, custom, error_profile, no_metrics, unweighted, num_threads, name_o, equally, em_model):
-    print("\nRunning error insertion with following parameters:\n")
+    print("\nRunning error insertion with the following parameters:\n")
     print("input: %s" % file)
     print("number: %i" % stat[0])
     print("mean: %i" % stat[1])
