@@ -204,7 +204,7 @@ Additionally for Host/Pathogen samples a second `.tsv` file required for `-tx` w
 
 The parameters for design are: mean, sd_len, posrate, profile, basecaller, circular, custom, error_profile, no_metrics, unweighted, equally_p, and equally_h. The type can be set as target or decoy.
 
-----------------------
+ <ins>Host/Pathogen Samples</ins>
 
 For all Host/Pathogen samples at least **one** `.fasta` file must have the "host" (all lowercase) taxon, the total abundance in number of reads has to be provided using `-n` in the command line, and **no** abundance has to be provided for host taxa (use - in the reads/ratio column). You can use the following examples as templates for designing samples:
 
