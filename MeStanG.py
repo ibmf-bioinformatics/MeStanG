@@ -392,7 +392,7 @@ def main():
 
     parser_se = subenv.add_parser('st', help="Generate standard environmental sample")
 
-    parser_se.add_argument('-f', '--file', help='Input file with parameters', required=True)
+    parser_se.add_argument('-f', '--file', help='Input file list', required=True)
     parser_se.add_argument('-tx', '--taxon', help='File with organism taxon designation (Optional)'
                           , default=None)
     parser_se.add_argument('-n', '--number', help='Number of reads to be simulated for each sequence (Default = 100)',
@@ -416,7 +416,7 @@ def main():
                           , default=None)
     parser_se.add_argument('-o', '--output', help='Output directory (Default = MeStanG_output)',
                           default='MeStanG_output')
-    parser_se.add_argument('--equally', help='Distribute equally the ratio of a taxon in its subtaxa',
+    parser_se.add_argument('--equally', help='Distribute the ratio of a taxon in its subtaxa equally',
                           action='store_true', default=False)
     parser_se.add_argument('--error_profile', help='Generate error insertion profile output',
                           action='store_true', default=False)
@@ -431,7 +431,7 @@ def main():
 
     parser_re = subenv.add_parser('rd', help="Generate randomly distributed environmental sample")
 
-    parser_re.add_argument('-f', '--file', help='Input file with parameters', required=True)
+    parser_re.add_argument('-f', '--file', help='Input file list', required=True)
     parser_re.add_argument('-n', '--number', help='Number of reads to be simulated for each sequence (Default = 100)',
                           type=int, default=100)
     parser_re.add_argument('-m', '--mean', help='Average read length (Default = 2000)', type=int, default=2000)
@@ -476,7 +476,7 @@ def main():
     
     parser_sh = subhost.add_parser('st', help="Generate standard host/pathogen sample")
 
-    parser_sh.add_argument('-f', '--file', help='Input file with parameters', required=True)
+    parser_sh.add_argument('-f', '--file', help='Input file list', required=True)
     parser_sh.add_argument('-tx', '--taxon', help='File with pathogens taxon designation (Optional)'
                           , default=None)
     parser_sh.add_argument('-n', '--number', help='Number of reads to be simulated for each sequence (Default = 100)',
@@ -547,7 +547,7 @@ def main():
                           default='MeStanG_output')
     parser_rh.add_argument('--equally_p', help='Distribute abundance of a pathogen taxon among subtaxa equally',
                           action='store_true', default=False)
-    parser_rh.add_argument('--equally_h', help='Distribute abundance of host among subtaxa equally',
+    parser_rh.add_argument('--equally_h', help='Distribute abundance of host equally',
                           action='store_true', default=False)
     parser_rh.add_argument('--error_profile', help='Generate error insertion profile output',
                           action='store_true', default=False)
