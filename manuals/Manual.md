@@ -28,10 +28,10 @@ MeStanG workflow. Created in BioRender. Ramos Lopez, D. (2025) https://BioRender
 For design, there are three general specifications.
 
 - Source of the sample: environmental or host/pathogen sample source.
-- Taxa abundance: known taxa abundances (standard mode) or unknown abundances (random mode).
-- Abundance distribution: by unique taxa or by taxa with unique subtaxa.
+- Taxa read abundance: known taxa read abundances (standard mode) or unknown (random mode).
+- Read Abundance distribution: by unique taxa or by taxa with unique subtaxa.
 
-Each `.fasta` file can be tagged with a taxon (pl. taxa) for abundance distribution and to trace the source of each member of the community in the generated output (see [Output files](#ofls)). This taxon is a user-defined tag and should be a unique alphanumeric string with no spaces. Taxon also helps to group specific `.fasta` files for abundance distribution. To decide which approach you could use for sample generation use the following graph:
+Each `.fasta` file can be tagged with a taxon (pl. taxa) for read abundance distribution and to trace the source of each member of the community in the generated output (see [Output files](#ofls)). This taxon is a user-defined tag and should be a unique alphanumeric string with no spaces. Taxon also helps to group specific `.fasta` files for read abundance distribution. To decide which approach you could use for sample generation use the following graph:
 
 <p align="center">
   <img src="Design_options.jpg" alt="Design options"/>
@@ -68,11 +68,11 @@ Specific to certain modes/sample sources:
 - `-ct`, `--ctype`: Sample type only for Host/Pathogen random mode. This feature is aimed at Diagnostic assay validation, sample types available are only target "`t`", only decoy "`d`", and target + decoy "`t+d`". Provisional diagnostic sensitivity and specificity can be assessed using this feature as "`t`" samples will be true positives, "`d`" for true negatives, and "`t+d`" to check any possible interactions between the target and decoy.
 - `-maxr`, `--max_ratio`: Maximum non-host ratio only for Host/Pathogen random mode (Default = 0.5).
 - `-minr`, `--min_ratio`: Minimum non-host ratio only for Host/Pathogen random mode (Default = 0).
-- `--equally`: Distribute the abundance of a taxon among subtaxa equally when using Design by subtaxa. Available only in environmental standard mode.
-- `--equally_p`: Distribute the abundance of a pathogen among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
-- `--equally_h`: Distribute the abundance of a host among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
+- `--equally`: Distribute the read abundance of a taxon among subtaxa equally when using Design by subtaxa. Available only in environmental standard mode.
+- `--equally_p`: Distribute the read abundance of a pathogen among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
+- `--equally_h`: Distribute the read abundance of a host among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
 
-All flag parameters' default value is **false**, using the flag will change it to **true**. To run you need to provide the sample source type (env or host) and the taxa abundance mode (st or rd), so for example, if you want to generate an environmental sample with known abundances run: `MeStanG.py env st`.
+All flag parameters' default value is **false**; using the flag will change it to **true**. To run, you need to provide the sample source type (env or host) and the taxa read abundance mode (st or rd). For example, if you want to generate an environmental sample with known read abundances, run `MeStanG.py env st`.
 
 ### <a name="iflsdt"></a> Input files for Design as taxa
 
@@ -85,13 +85,13 @@ The `.tsv` file required is `-f` and has the following format:
 |file3.fasta  |tax3   |nreads3 or ratio3 |...        |...  |
 |...          |...    |...               |...        |...  |
 
-For all designs, reads or ratio refer to the abundances for each `.fasta` file, only one style can be provided for each run, if using ratio (values from 0 to 1, the total sum has to be 1) the total number of reads for the sample will be taken from `-n` in the command-line design parameters.
+For all designs, "reads" or "ratio" refers to the read abundances for each `.fasta` file. Only one style can be provided for each run. If using "ratio" (values from 0 to 1; the total sum has to be 1), the total number of reads for the sample will be taken from `-n` in the command-line design parameters.
 
 When using Design as taxa, the taxon column can be omitted. Parameters can be as many columns as desired from: mean, sd_len, posrate, profile, basecaller, circular, custom, error_profile, no_metrics, unweighted, and equally. All these parameters are the same as stated in [Command-line design parameters](#clindt) and can be customized for each `.fasta` file here. In this design, each `.fasta` file corresponds to unique taxa in the sample.
 
 When setting parameters in the `-f` file they will override the parameters coming from the command line, if a "-" is provided, the value will be taken from the command line. If no value was provided in the command line, the default value for that parameter will be assigned as stated in [Command-line design parameters](#clindt). For flag parameters like circular and error_profile, the value in the `-f` file to use the flag is "true". The hierarchy rules of parameter value inputs (`.tsv` file > Command-line > Default values) apply to all possible designs using MeStanG. You can use the following examples as templates for designing samples:
 
-*Example 1* - Environmental standard sample with abundances provided as the number of reads
+*Example 1* - Environmental standard sample with read abundances provided as the number of reads
 
 Command-line: `MeStanG.py env st -f list.tsv -m 2000 -sd 200 -t 16 --circular --no_metrics --no_ids`
 
@@ -122,7 +122,7 @@ The parameters for the sample generation that MeStanG will use are:
 
 As seen above, parameters given in the `.tsv` file override parameters given in the command line, parameters not shown in the `.tsv` file take the value from the instructions in the command line, and if they are not defined by the user they will take the default value (fast as profile and dorado as basecaller for file3.fasta). `--no_ids` is a function that works after the sample is generated so it can only be given in the command line.
 
-*Example 2* - Environmental standard sample with abundances provided as relative ratios
+*Example 2* - Environmental standard sample with read abundances provided as relative ratios
 
 Command-line: `MeStanG.py env st -f list.tsv -n 1000 -m 1000 -sd 300 -t 8`
 
@@ -151,7 +151,7 @@ The parameters for the sample generation that MeStanG will use are:
 |unweigthed	    |false	      |false	      |false      |
 |equally	      |false	      |false	      |false      |
 
-In this example, abundances were provided as ratios, the total number of reads will be taken from the command-line instructions (or the default value). Abundance in ratios work as probabilities rather than percentages, if a strict number of reads is required in the design provide abundance as the number of reads for each `.fasta` file. The taxon column was omitted in this example.
+In this example, read abundances were provided as ratios. The total number of reads will be taken from the command-line instructions (or the default value). Read abundance in ratios works as probabilities rather than percentages. If a strict number of reads is required in the design, the user should provide read abundance as the number of reads for each `.fasta` file. The taxon column was omitted in this example.
 
 ### <a name="iflsds"></a> Input files for Design as subtaxa
 
@@ -167,7 +167,7 @@ The `.tsv` files required are `-f` and `-tx`. The `-f` file has the following fo
 |file6.fasta  |tax3   |
 |...          |...    |
 
-For this design, the taxon column must be included and different `.fasta` files are grouped within the same taxa, so each file for this design will be treated as a **subtaxa** (each `.fasta` file) for the grouping **taxa** (user-defined).
+For this design, the taxon column must be included and different `.fasta` files are grouped within the same taxa, so each file will be treated as a **subtaxa** (each `.fasta` file) for the grouping **taxa** (user-defined).
 
 The `-tx` file has the following format:
 
@@ -193,9 +193,9 @@ For environmental samples, the `.tsv` file required is `-f` with the following f
 |file5.fasta  |tax3   |
 |...          |...    |
 
-For this design the taxon column must be included, and different `.fasta` files can be grouped within the same taxa. For environmental samples, design parameters are retrieved from the command line specifications.
+The taxon column must be included, and different `.fasta` files can be grouped within the same taxa. For environmental samples, design parameters are retrieved from the command line specifications.
 
-Additionally for Host/Pathogen samples a second `.tsv` file required for `-tx` with the following format:
+Additionally for Host/Pathogen samples a second `.tsv` file is required for `-tx` with the following format:
 
 |taxon	|type	   |parameters |...  |
 |-------|--------|-----------|-----|
@@ -208,9 +208,9 @@ The parameters for design are: mean, sd_len, posrate, profile, basecaller, circu
 
  <ins>Host/Pathogen Samples</ins>
 
-For all Host/Pathogen samples at least **one** `.fasta` file must have the "host" (all lowercase) taxon, the total abundance in number of reads has to be provided using `-n` in the command line, and **no** abundance has to be provided for host taxa (use - in the reads/ratio column). You can use the following examples as templates for designing samples:
+For all Host/Pathogen samples at least **one** `.fasta` file must have the "host" (all lowercase) taxon, the total read abundance in number of reads has to be provided using `-n` in the command line, and **no** read abundance has to be provided for host taxa (use - in the reads/ratio column). You can use the following examples as templates for designing samples:
 
-*Example 3* - Host/Pathogen standard sample with abundances provided as ratios and Design by subtaxa
+*Example 3* - Host/Pathogen standard sample with read abundances provided as ratios and Design by subtaxa
 
 Command-line: `MeStanG.py host st -f list.tsv -tx tax.tsv -n 1000 -m 1000 -sd 300 --equally_p -t 8`
 
@@ -286,7 +286,7 @@ The tables provided above contain the default values for the emission model used
 
 The output files will be similar for all designs (`*` stands for the `-o` parameter value provided):
 
-- `*_abundance.tsv`: Details about the absolute and relative abundances of all the "members" in the sample, taxon column will appear if provided in the input files.
+- `*_abundance.tsv`: File with details about the absolute and relative read abundances of all the "members" in the sample, taxon column will appear if provided in the input files.
 - `*_error_profile`: Output with **all** basecalling errors, reporting type of error, length, base change, and position. **Warning**: this file can be *very big* considering it contains all the basecalling errors for all reads, by default this output will not be generated.
 - `*_metrics`: File with the basecalling accuracy for each **read** in the sample, including strand sense, starting position in the reference genome (S.pos_genome), read length (bp_ref_genome), #mismatches, #insertions, #deletions, read accuracy, and error rate.
 - `*_metrics_summary`: Contains the average basecalling accuracy for each **entry** in the `.fasta` files provided. Includes read length, #mismatches, #insertions, #deletions, accuracy, and error rate.
@@ -296,6 +296,6 @@ The output files will be similar for all designs (`*` stands for the `-o` parame
 ## <a name="lims"></a> Limitations and Final remarks
 
 - The accuracy of the generated samples to a real sample depends entirely on the error models, which do not consider homopolymers, sampling noise, naturally occurring mutations, or genome complexity.
-- In theory, other platforms' sequencing outputs can be generated using MeStanG if their proper error models are provided as specified in [Custom Models](#cmods) and the read lengths and other design features are modified. This also applies to generate samples containing different variants provided as different `.fasta` files from the same organism.
+- In theory, other platforms' sequencing outputs can be generated using MeStanG if their proper error models are provided as specified in [Custom Models](#cmods) and the read lengths and other design features are modified. This also applies to generating samples with different variants provided as different `.fasta` files from the same organism.
 - The generated samples will resemble the `.fasta` inputs provided by the user so their similarity to real samples depends on the inputs.
-- Designs are entirely user-defined and while there are some mathematical validations e.g., in Host/Pathogen scenarios pathogen reads can't be more than host reads, all probabilities sum up to 1, `equally` arguments will distribute the reads as even as possible, among others, the biological sense of the designs is up to the user exclusively. As an example, MeStanG would allow using different basecalling models in the same sample, something not commonly occurring as basecalling is usually performed on all the reads of a sample rather than selectively in read subsets.
+- Designs are entirely user-defined and while there are some mathematical validations e.g., in Host/Pathogen scenarios pathogen reads can't be more than host reads, all probabilities sum up to 1, `equally` arguments will distribute the reads as even as possible, among others, the biological sense of the designs is up to the user exclusively. For example, MeStanG would allow using different basecalling models in the same sample, something not commonly occurring as basecalling is usually performed on all the reads of a sample rather than selectively in read subsets.
