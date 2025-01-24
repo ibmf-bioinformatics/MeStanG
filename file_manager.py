@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Module of MeStanG v0.1
+Module of MeStanG v0.1.1
 @author: Daniel Ramos Lopez
 Metagenomic Standards Generator (MeStanG) for HTS Nanopore datasets 
 """
@@ -176,7 +176,7 @@ def validate_header(stat, header, files, args, parser, i):
         stat.append(args.mean)
 
     if 'sd_len' in header and files[i][header.index('sd_len')] != '-':
-        stat.append(int(files[i][header.index('sd_len')]))
+        stat.append(float(files[i][header.index('sd_len')]))
     else:
         stat.append(args.sd_len)
 
