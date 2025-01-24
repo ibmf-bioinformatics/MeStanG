@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Module of MeStanG v0.1
+Module of MeStanG v0.1.1
 @author: Daniel Ramos Lopez
 Metagenomic Standards Generator (MeStanG) for HTS Nanopore datasets 
 """
