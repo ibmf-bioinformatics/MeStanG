@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-MeStanG v0.1
+MeStanG v0.1.1
 @author: Daniel Ramos Lopez
 Metagenomic Standards Generator (MeStanG) for HTS Nanopore datasets 
 """
@@ -399,7 +399,7 @@ def main():
                           type=int, default=100)
     parser_se.add_argument('-m', '--mean', help='Average read length (Default = 2000)', type=int, default=2000)
     parser_se.add_argument('-sd', '--sd_len', help='Standard deviation of read length in normal scale (Default = 0)',
-                          type=int, default=0)
+                          type=float, default=0)
     parser_se.add_argument('-s', '--posrate',
                           help='Positive sense read rate (Default = 1.0)', type=float,
                           default=1.0)
@@ -436,7 +436,7 @@ def main():
                           type=int, default=100)
     parser_re.add_argument('-m', '--mean', help='Average read length (Default = 2000)', type=int, default=2000)
     parser_re.add_argument('-sd', '--sd_len', help='Standard deviation of read length in normal scale (Default = 0)',
-                          type=int, default=0)
+                          type=float, default=0)
     parser_re.add_argument('-s', '--posrate',
                           help='Positive sense read rate (Default = 1.0)', type=float,
                           default=1.0)
@@ -483,7 +483,7 @@ def main():
                           type=int, default=100)
     parser_sh.add_argument('-m', '--mean', help='Average read length (Default = 2000)', type=int, default=2000)
     parser_sh.add_argument('-sd', '--sd_len', help='Standard deviation of read length in normal scale (Default = 0)',
-                          type=int, default=0)
+                          type=float, default=0)
     parser_sh.add_argument('-s', '--posrate',
                           help='Positive sense read rate (Default = 1.0)', type=float,
                           default=1.0)
@@ -524,7 +524,7 @@ def main():
                           type=int, default=100)
     parser_rh.add_argument('-m', '--mean', help='Average read length (Default = 2000)', type=int, default=2000)
     parser_rh.add_argument('-sd', '--sd_len', help='Standard deviation of read length in normal scale (Default = 0)',
-                          type=int, default=0)
+                          type=float, default=0)
     parser_rh.add_argument('-maxr', '--max_ratio', help='Maximum non-host ratio (Default = 0.5)',
                             type=float, default=0.5)
     parser_rh.add_argument('-minr', '--min_ratio', help='Minimum non-host ratio (Default = 0)',
