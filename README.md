@@ -4,7 +4,7 @@
 
 Resource for simulating *de novo* nanopore datasets resembling systematic sampling sequencing data. 
 
-The pipeline has been tested with Python 3.12.3, using the modules `biopython = 1.83` and `numpy = 1.26.4`. It was tested on CentOS Linux 7.9.2009, though it is likely to run on any platform compatible with Python 3. 
+The pipeline has been tested with Python 3.12.3, using the modules `biopython = 1.83` and `numpy = 1.26.4`. It was tested on CentOS Linux 7.9.2009, though it will likely run on any platform compatible with Python 3. Multithreading managed by multiprocessing on Python is compatible with Linux but it might not work properly on Windows and MacOS, single-thread runs are compatible with all OS.
 
 ## Installation
 
