@@ -54,6 +54,10 @@ Main code contributors:
 
 * MeStanG modules and Manual: Daniel Ramos Lopez
 
+## Cite
+
+Use the following doi to cite the usage of this tool: https://doi.org/10.3390/biology14010069
+
 ## Issues and help
 
 Users can send any questions about MeStanG usage on the issues tab, before submitting an issue please consider looking through the manual and browsing existing issues.
