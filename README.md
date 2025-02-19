@@ -4,11 +4,11 @@
 
 Resource for simulating *de novo* nanopore datasets resembling systematic sampling sequencing data. 
 
-The pipeline has been tested with Python 3.12.3, using the modules `biopython = 1.83` and `numpy = 1.26.4`. Tested on CentOS Linux 7.9.2009, though it is likely to run on any platform compatible with Python 3. 
+The pipeline has been tested with Python 3.12.3, using the modules `biopython = 1.83` and `numpy = 1.26.4`. It was tested on CentOS Linux 7.9.2009, though it is likely to run on any platform compatible with Python 3. 
 
 ## Installation
 
-Download the most recent source code, uncompress it, and add all `.py` files to `PATH` and/or `PYTHONPATH`. You can also place the `.py` files on your `bin` folder.
+Add the directory containing `MeStanG.py` to `PATH` and/or `PYTHONPATH` or place `MeStanG.py` in your `bin` folder. Make sure the `.py` is executable.
 
 ## Requirements
 
