@@ -1,6 +1,6 @@
 # MeStanG Usage Manual
 
-### Version 0.1
+### Version 1.0.1
 
 ## Table of contents
 
