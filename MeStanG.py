@@ -34,7 +34,7 @@ def ratio_h(input_r, input_pr):
         if input_pr[i] >= 0.5:
             sys.stderr.write("\nPlease provide valid pathogen ratios\n")
             sys.exit(1)
-        input_pr[i] = np.random.choice(prob, input_r, p=[input_pr[i], 1 - input_pr[i]]).tolist().count('p')
+        input_pr[i] = numpy.random.choice(prob, input_r, p=[input_pr[i], 1 - input_pr[i]]).tolist().count('p')
         host_reads -= input_pr[i]
         if host_reads <= 0:
             sys.stderr.write("\nError: There are more pathogens than host itself!\n"
@@ -55,7 +55,7 @@ def ratio_e(input_r, input_pr):
                 sys.stderr.write("\nPlease provide valid ratios\n")
                 sys.exit(1)
             if member_pr[i] != 0:
-                member_pr[i] = np.random.choice(prob, input_r, p=[member_pr[i], 1 - member_pr[i]]).tolist().count('r')
+                member_pr[i] = numpy.random.choice(prob, input_r, p=[member_pr[i], 1 - member_pr[i]]).tolist().count('r')
             reads -= member_pr[i]
         if reads > 0:
             break
@@ -76,7 +76,7 @@ def dist_ratio(number, subtaxa, equally):
         number_subtaxon = int(number)
         for i in range(subtaxa):
             if number_subtaxon != 0:
-                number_for_subtaxon = np.random.randint(1, number_subtaxon + 1)
+                number_for_subtaxon = numpy.random.randint(1, number_subtaxon + 1)
                 number_subtaxon -= number_for_subtaxon
                 nr.append(number_for_subtaxon)
                 if i == subtaxa - 1 and number_subtaxon != 0:
