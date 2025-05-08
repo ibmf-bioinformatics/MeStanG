@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-MeStanG v1.0
+MeStanG v1.0.1
 @author: Daniel Ramos Lopez
 Metagenomic Standards Generator (MeStanG) 
 """
