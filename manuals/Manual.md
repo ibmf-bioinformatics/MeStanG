@@ -16,7 +16,7 @@
 
 ## <a name="intro"></a> Introduction
 
-For sample generation, it is required to provide `.fasta` format files and `.tsv` files with specific formats as input to the workflow, `.fasta` files can have many different entries (Multifasta). All entries from each `.fasta` file will have the same design characteristics as they come from the "same source". Different `.fasta` files can have specific design characteristics defined by the user, if specific features are required for an entry, said entry has to be in a separate `.fasta` file. It is necessary to provide at least **one** `.fasta` and **one** `.tsv` files for each run, explained later in [Input files](#ifls).
+For sample generation, it is required to provide `.fasta` format files and plain text files formatted as tab-separated values (`.tsv` or `.txt` would work as long as they are tab-delimited) with specific formats as input to the workflow, `.fasta` files can have many different entries (Multifasta). All entries from each `.fasta` file will have the same design characteristics as they come from the "same source". Different `.fasta` files can have specific design characteristics defined by the user, if specific features are required for an entry, said entry has to be in a separate `.fasta` file. It is necessary to provide at least **one** `.fasta` and **one** `.tsv` files for each run, explained later in [Input files](#iflsdt).
 
 <p align="center">
   <img src="MeStanG_workflow.png"/>
@@ -57,10 +57,10 @@ Common to all modes and designs:
 - `-t`, `--threads`: Number of threads.
 - `--error_profile`: Flag for generating error insertion profile output.
 - `--no_metrics`: Flag to skip generating metrics files.
-- `--no_ids`: Flag to generate sequences without IDs, normally sequence IDs will resemble the original ID entry of the sequence they come from. To generate sequences with generic IDs use this flag.
-- `--unweighted`: Flag to use the same number of reads for every entry in Multifasta files. By default MeStanG will distribute the number of reads of each `.fasta` file among its entries based on their lengths, the longer the read the higher the number of reads distributed to it. While this might make sense mathematically and biologically in some reference genomes like bacterial assemblies where the chromosome makes up to >98% of the genome and the rest is plasmid sequences, it is up to the user to decide whether to use this flag. Using this flag will make MeStanG assign the same `-n` number of reads to each entry.
+- `--no_ids`: Flag to generate sequences without IDs, normally sequence IDs resemble the original ID entry of the sequence they come from. To generate sequences with generic IDs use this flag.
+- `--unweighted`: Flag to use the same number of reads for every entry in Multifasta files. By default MeStanG will distribute the number of reads of each `.fasta` file among its entries based on their lengths, the longer the read the higher the number of reads distributed to it. While this might make sense mathematically and biologically in some reference genomes like bacterial assemblies where the chromosome makes up to >98% of the genome and the rest is plasmid sequences, it is up to the user to decide whether to use this flag. Using this flag will make MeStanG assign the same `-n` number of reads for each entry.
 
-`*` How MeStanG file management works: While it is possible to provide relative and absolute paths for all the input files, the output will always be in a new folder in the current working directory due to how the pipeline works, it is **not** recommended to provide paths in `-o`.
+`*` How MeStanG file management works: While it is possible to provide relative and absolute paths for all the input files, the output will always be in a new folder in the current working directory since that's how the pipeline works, it is **not** recommended to provide paths in `-o` as this might break the file naming.
 
 Specific to certain modes/sample sources:
 
@@ -72,7 +72,7 @@ Specific to certain modes/sample sources:
 - `--equally_p`: Distribute the read abundance of a pathogen among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
 - `--equally_h`: Distribute the read abundance of a host among subtaxa equally when using Design by subtaxa or random mode. Available only in Host/Pathogen sample source.
 
-All flag parameters' default value is **false**; using the flag will change it to **true**. To run, you need to provide the sample source type (env or host) and the taxa read abundance mode (st or rd). For example, if you want to generate an environmental sample with known read abundances, run `MeStanG.py env st`.
+All flag parameters' default value is **false**; using the flag will change it to **true**. To run, you must provide the sample source type (env or host) and the taxa read abundance mode (st or rd). For example, if you want to generate an environmental sample with known read abundances, run `MeStanG.py env st`.
 
 ### <a name="iflsdt"></a> Input files for Design as taxa
 
@@ -90,6 +90,8 @@ For all designs, "reads" or "ratio" refers to the read abundances for each `.fas
 When using Design as taxa, the taxon column can be omitted. Parameters can be as many columns as desired from: mean, sd_len, posrate, profile, basecaller, circular, custom, error_profile, no_metrics, unweighted, and equally. All these parameters are the same as stated in [Command-line design parameters](#clindt) and can be customized for each `.fasta` file here. In this design, each `.fasta` file corresponds to unique taxa in the sample.
 
 When setting parameters in the `-f` file they will override the parameters coming from the command line, if a "-" is provided, the value will be taken from the command line. If no value was provided in the command line, the default value for that parameter will be assigned as stated in [Command-line design parameters](#clindt). For flag parameters like circular and error_profile, the value in the `-f` file to use the flag is "true". The hierarchy rules of parameter value inputs (`.tsv` file > Command-line > Default values) apply to all possible designs using MeStanG. You can use the following examples as templates for designing samples:
+
+**Important:** Do **not** copy the tables presented for the examples directly, as some extra unwanted spaces might be generated. All input text files must be in a tab-separated format and use preferably LF encoding to ensure cross-OS compatibility.
 
 *Example 1* - Environmental standard sample with read abundances provided as the number of reads
 
@@ -195,7 +197,7 @@ For environmental samples, the `.tsv` file required is `-f` with the following f
 
 The taxon column must be included, and different `.fasta` files can be grouped within the same taxa. For environmental samples, design parameters are retrieved from the command line specifications.
 
-Additionally for Host/Pathogen samples a second `.tsv` file is required for `-tx` with the following format:
+Additionally for Host/Pathogen samples, a second `.tsv` file is required for `-tx` with the following format:
 
 |taxon	|type	   |parameters |...  |
 |-------|--------|-----------|-----|
@@ -298,4 +300,4 @@ The output files will be similar for all designs (`*` stands for the `-o` parame
 - The accuracy of the generated samples to a real sample depends entirely on the error models, which do not consider homopolymers, sampling noise, naturally occurring mutations, or genome complexity.
 - In theory, other platforms' sequencing outputs can be generated using MeStanG if their proper error models are provided as specified in [Custom Models](#cmods) and the read lengths and other design features are modified. This also applies to generating samples with different variants provided as different `.fasta` files from the same organism.
 - The generated samples will resemble the `.fasta` inputs provided by the user so their similarity to real samples depends on the inputs.
-- Designs are entirely user-defined and while there are some mathematical validations e.g., in Host/Pathogen scenarios pathogen reads can't be more than host reads, all probabilities sum up to 1, `equally` arguments will distribute the reads as even as possible, among others, the biological sense of the designs is up to the user exclusively. For example, MeStanG would allow using different basecalling models in the same sample, something not commonly occurring as basecalling is usually performed on all the reads of a sample rather than selectively in read subsets.
+- Designs are entirely user-defined and while there are some mathematical validations e.g., in Host/Pathogen scenarios pathogen reads can't be more than host reads, all probabilities sum up to 1, `equally` arguments will distribute the reads as even as possible, among others, the biological sense of the designs is up to the user exclusively. For example, MeStanG would allow using different basecalling models in the same sample, something not commonly occurring as basecalling is usually performed on all sample reads rather than selectively in read subsets.
