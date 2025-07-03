@@ -30,6 +30,16 @@ Now to activate the environment:
 micromamba activate metasim
 ```
 
+Now you can use MeStanG by either adding it to your PATH or a workaround is to copy it to your current environment `bin` folder so everytime you load the environment, you can use it. First you need to know where your environment is stored so you run
+
+```bash=1
+micromamba env list
+ls <environmentlocation>/bin
+cp MeStanG.py <environmentlocation>/bin
+chmod +x <environmentlocation>/bin/MeStanG.py
+```
+Now you can use MeStanG.py
+
 ## Usage
 
 ```Python=22
