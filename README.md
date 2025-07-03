@@ -21,7 +21,7 @@ numpy==1.26.4
 You can install these packages using a package manager like micromamba as follows:
 
 ```bash=1
-micromamba create -n my_bio_env python=3.8 biopython=1.83 numpy=1.26.4 -c conda-forge
+micromamba create -n metasim python=3.8 biopython=1.83 numpy=1.26.4 -c conda-forge
 ```
 
 ## Usage
