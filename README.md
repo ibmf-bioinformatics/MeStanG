@@ -24,6 +24,12 @@ You can install these packages using a package manager like [micromamba](https:/
 micromamba create -n metasim python=3.12.3 biopython=1.83 numpy=1.26.4 -c conda-forge
 ```
 
+Now to activate the environment:
+
+```bash=1
+micromamba activate metasim
+```
+
 ## Usage
 
 ```Python=22
