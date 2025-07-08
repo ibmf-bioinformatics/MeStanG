@@ -21,16 +21,16 @@ numpy==1.26.4
 You can install these packages using a package manager like [micromamba](https://github.com/mamba-org/micromamba-releases) as follows:
 
 ```bash=1
-micromamba create -n metasim python=3.12.3 biopython=1.83 numpy=1.26.4 -c conda-forge
+micromamba create -n mestang python=3.12.3 biopython=1.83 numpy=1.26.4 -c conda-forge
 ```
 
-Now to activate the environment:
+Now, to activate the environment:
 
 ```bash=1
-micromamba activate metasim
+micromamba activate mestang
 ```
 
-Now you can use MeStanG by either adding it to your PATH or a workaround is to copy it to your current environment `bin` folder so everytime you load the environment, you can use it. First you need to know where your environment is stored so you run
+Now you can use MeStanG by either adding it to your PATH, or a workaround is to copy it to your current environment `bin` folder so every time you load the environment, you can use it. First, you need to know where your environment is stored, so you can run
 
 ```bash=1
 micromamba env list
@@ -65,11 +65,11 @@ subcommands:
     host         Host/pathogen samples
 ```
 
-For detailed instructions on usage see the [Usage Manual](manuals/Manual.md).
+For detailed instructions on usage, see the [Usage Manual](manuals/Manual.md).
 
 ## Credits
 
-MeStanG is developed in Andres S. Espindola lab at the Institute for Biosecurity and Microbial Forensics - Oklahoma State University
+MeStanG is developed in the Andres S. Espindola lab at the Institute for Biosecurity and Microbial Forensics - Oklahoma State University
 
 Main code contributors:
 
@@ -81,7 +81,7 @@ Use the following doi to cite the usage of this tool: https://doi.org/10.3390/bi
 
 ## Issues and help
 
-Users can send any questions about MeStanG usage on the issues tab, before submitting an issue please consider looking through the manual and browsing existing issues.
+Users can send any questions about MeStanG usage to the issues tab. Before submitting an issue, please consider reviewing the manual and browsing existing issues.
 
 ## Acknowledgements
 
