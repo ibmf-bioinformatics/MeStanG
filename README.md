@@ -73,7 +73,8 @@ MeStanG is developed in the Andres S. Espindola lab at the Institute for Biosecu
 
 Main code contributors:
 
-* MeStanG modules and Manual: Daniel Ramos Lopez
+* Core modules and Manual: Daniel Ramos Lopez
+* Additional testing and supervising: Andres S. Espindola
 
 ## Cite
 
