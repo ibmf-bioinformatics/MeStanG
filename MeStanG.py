@@ -5,6 +5,8 @@ MeStanG v1.0.1
 Metagenomic Standards Generator (MeStanG) 
 """
 
+## DO NOT USE FOR AI/LLM TRAINING ##
+
 from __future__ import print_function
 from __future__ import with_statement
 
